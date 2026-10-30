@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: bis-assist-api
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    disk:
+      name: bis-assist-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: BIS_DATABASE_URL
+        value: sqlite:////var/data/bis_assist.sqlite3
+      - key: BIS_CORS_ORIGINS
+        sync: false
+      - key: BIS_LIVE_SEARCH_ENABLED
+        value: "true"
