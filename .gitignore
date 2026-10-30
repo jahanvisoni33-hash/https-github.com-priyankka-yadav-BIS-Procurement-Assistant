@@ -13,9 +13,13 @@ dist
 __pycache__
 .pytest_cache
 *.py[cod]
-backend/data/*.sqlite3
-backend/data/*.db
 .env
+.env.*
+**/.env
+**/.env.*
+*.sqlite
+*.sqlite3
+*.db
 dist-ssr
 *.local
 
